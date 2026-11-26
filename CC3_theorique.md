@@ -180,6 +180,21 @@ Une **GPO (Group Policy Object)** est un ensemble de **paramètres** appliqués 
 
 En règle générale, les paramètres appliqués plus tard peuvent remplacer les paramètres précédents en cas de conflit, sous réserve des options de priorité et d'héritage.
 
+### 🎯 Filtrage
+
+|🧰 Méthode|📖 Explication|
+|---|---|
+|🔐 **Filtrage de sécurité**|Par défaut, le GPO cible _Utilisateurs authentifiés_. On le remplace par un groupe précis (droits **Lecture + Appliquer la stratégie de groupe**)|
+|🧠 **Filtre WMI**|N'applique le GPO que si une condition est vraie (ex. version de Windows)|
+|🚫 **Bloquer l'héritage**|Une OU ignore les GPO des niveaux supérieurs|
+|💪 **Appliqué (Enforced)**|Force le GPO, même si l'héritage est bloqué|
+|🔒 **Ciblage au niveau de l'élément**|(Préférences) filtrage fin par paramètre|
+**Exemple de filtre WMI** :
+
+```sql
+SELECT * FROM Win32_OperatingSystem WHERE Version LIKE "10.%" AND ProductType = "1"
+```
+
 ## 4.3 Concepts de gestion
 
 | Concept | Fonction |
