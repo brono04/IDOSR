@@ -210,7 +210,7 @@ SELECT * FROM Win32_OperatingSystem WHERE Version LIKE "10.%" AND ProductType = 
 
 ## 4.4 PSO — Password Settings Object
 
-Une **PSO** est une stratégie de mot de passe affinée. Elle permet de définir des paramètres de mot de passe et de verrouillage différents pour des utilisateurs ou groupes de sécurité globaux ciblés.
+Une **PSO** permet de définir des règles de mot de passe et de blocage de compte spécifiques à certains utilisateurs ou groupes.
 
 **À retenir :** la valeur numérique de précédence la plus faible est prioritaire lorsqu'il faut départager plusieurs PSO applicables.
 
