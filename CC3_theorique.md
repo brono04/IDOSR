@@ -311,6 +311,8 @@ Exemple : empêcher le stockage de certains fichiers vidéo dans un dossier part
 5. Sélectionner **File Server Resource Manager**.
 6. Installer le rôle.
 
+# here
+
 # 6. DFS — Distributed File System
 
 ## 6.1 Définition et intérêt
@@ -355,7 +357,6 @@ Chemin logique commun :
 4. Ajouter les dossiers et leurs cibles.
 5. Pour la réplication, configurer les membres, connexions et dossiers répliqués.
 
-# here
 # 7. WDS — Windows Deployment Services
 
 ## 7.1 Définition et rôle
