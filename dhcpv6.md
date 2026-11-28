@@ -195,7 +195,7 @@ Router(config-rtr)# router-id 1.1.1.1
 
 ```
 Router(config)# interface g0/0
-Router(config-if)# ipv6 ospf 1 area 0
+Router(config-if)# ipv6 ospf 1 area 0                 # Activates OSPFv3 on the interface and assigns it to Area 0.
 ```
 
 **example for all**
