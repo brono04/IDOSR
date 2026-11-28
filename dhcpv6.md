@@ -136,12 +136,87 @@ show running-config
 - `show ipv6 dhcp binding`: displays DHCPv6 address bindings (mainly useful in Stateful mode).
 - `show running-config`: displays the router configuration.
 
----
+# **🌐 OSPFv2 & OSPFv3 — Simple Explanation**
 
-## ⚠️ Important notes
+## **9.2 OSPFv2 (IPv4)**
 
-- Configure the DHCPv6 pool and attach it to the interface that serves the clients.
-- The router interface IPv6 address should belong to the LAN prefix being advertised.
-- In Stateless mode, the interface must advertise a prefix so clients can use SLAAC.
-- DHCPv6 does **not** provide the default gateway to clients; IPv6 Router Advertisements provide default-router information.
-- Exact command support can vary by Cisco IOS version and platform.
+|Command|Role|
+|---|---|
+|`router ospf 1`|Starts OSPF process 1.|
+|`router-id 1.1.1.1`|Sets the router's unique OSPF ID.|
+|`network 192.168.10.0 0.0.0.255 area 0`|Activates OSPF on matching interfaces in Area 0.|
+|`network 192.168.10.1 0.0.0.0 area 0`|Activates OSPF on the interface with this exact IP.|
+|`ip ospf 1 area 0`|Activates OSPF directly on an interface.|
+|`passive-interface g0/0`|Stops sending Hello packets but still advertises the network.|
+|`default-information originate`|Advertises the default route to OSPF neighbors.|
+### **🧠 Important concepts**
+
+- **OSPF 1:** Process ID (locally significant).
+    
+- **Router ID:** Unique identifier of the router.
+    
+- **Area 0:** Backbone area.
+    
+- **Wildcard mask:** Identifies which IP addresses match.
+    
+- **Passive interface:** No OSPF Hello messages are sent, but the connected network can still be advertised.
+### **Three ways to activate OSPF**
+
+- **M1:** Match a network using a wildcard mask.
+    
+- **M2:** Match one exact interface IP using `0.0.0.0`.
+    
+- **M3:** Activate OSPF directly inside interface configuration.
+
+## **9.3 OSPFv3 (IPv6)**
+
+|Command|Role|
+|---|---|
+|`ipv6 router ospf 1`|Starts OSPFv3 process 1.|
+|`router-id 1.1.1.1`|Sets the OSPFv3 Router ID.|
+|`ipv6 ospf 1 area 0`|Activates OSPFv3 on the interface in Area 0.|
+
+### **Example configuration**
+
+**Step 1 — Enable IPv6 routing**
+
+```
+ipv6 unicast-routing
+```
+
+**Step 2 — Create OSPFv3 process**
+
+```
+Router(config)# ipv6 router ospf 1
+Router(config-rtr)# router-id 1.1.1.1
+```
+
+**Step 3 — Configure the interface**
+
+```
+Router(config)# interface g0/0
+Router(config-if)# ipv6 ospf 1 area 0
+```
+
+## **🔥 OSPFv2 vs OSPFv3**
+
+|OSPFv2|OSPFv3|
+|---|---|
+|IPv4|IPv6|
+|`router ospf 1`|`ipv6 router ospf 1`|
+|`ip ospf 1 area 0`|`ipv6 ospf 1 area 0`|
+|IPv4 network command|Interface-based activation|
+
+**Remember for your exam:**
+
+- OSPFv2 = IPv4.
+    
+- OSPFv3 = IPv6.
+    
+- Router ID = identifies the router.
+    
+- Area 0 = backbone.
+    
+- Passive interface = no Hello packets, network still advertised.
+    
+- Default-information originate = advertises a default route (if one exists).
