@@ -198,6 +198,24 @@ Router(config)# interface g0/0
 Router(config-if)# ipv6 ospf 1 area 0
 ```
 
+**example for all**
+
+```bash
+enable
+configure terminal
+
+ipv6 unicast-routing
+
+ipv6 router ospf 1
+router-id 1.1.1.1
+exit
+
+interface g0/0
+ipv6 address 2001:db8:12::1/64
+ipv6 ospf 1 area 0
+no shutdown
+```
+
 ## **🔥 OSPFv2 vs OSPFv3**
 
 |OSPFv2|OSPFv3|
